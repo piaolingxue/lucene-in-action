@@ -131,6 +131,8 @@ public class SortingExample {
 				true)));
 		example.displayResults(query, new Sort(SortField.FIELD_DOC));
 		example.displayResults(query, new Sort(SortField.FIELD_SCORE));
+		// score by index order
+		example.displayResults(query, Sort.INDEXORDER);
 		writer.close();
 		d.close();
 	}
