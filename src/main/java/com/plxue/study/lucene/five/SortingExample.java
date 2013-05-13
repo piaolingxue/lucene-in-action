@@ -34,7 +34,11 @@ import org.apache.lucene.search.SortField.Type;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.store.IOContext;
+import org.apache.lucene.store.IndexInput;
 import org.apache.lucene.store.MMapDirectory;
+import org.apache.lucene.store.SimpleFSDirectory;
 import org.apache.lucene.util.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,7 +107,7 @@ public class SortingExample {
 	public static void main(String[] args) throws Exception {
 		PropertyConfigurator.configure("log4j.properties");
 		
-		Directory d = new MMapDirectory(new File("index"));
+		Directory d = new SimpleFSDirectory(new File("index"));
 		IndexWriterConfig conf = new IndexWriterConfig(Version.LUCENE_42, 
 				new SmartChineseAnalyzer(Version.LUCENE_42));
 		IndexWriter writer = new IndexWriter(d, conf);
